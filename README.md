@@ -1,38 +1,56 @@
-# Welcome to React Router!
-
-A modern, production-ready template for building full-stack React applications using React Router.
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
-
-## Features
-
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+# SupplySight
 
 ## Getting Started
 
+### Prerequisites
+
+- Node.js 18+ 
+- npm or yarn
+
 ### Installation
 
-Install the dependencies:
+1. Clone the repository and install dependencies:
 
 ```bash
+git clone <repository-url>
+cd nuel
 npm install
 ```
 
 ### Development
 
-Start the development server with HMR:
+This application requires running both the GraphQL server and the React application:
+
+#### 1. Start the GraphQL Server
+
+In your first terminal:
+
+```bash
+npm run graphql
+```
+
+The GraphQL server will start at `http://localhost:4000` with the playground available for API exploration.
+
+#### 2. Start the React Application
+
+In a second terminal:
 
 ```bash
 npm run dev
 ```
 
-Your application will be available at `http://localhost:5173`.
+The React application will be available at `http://localhost:5173` and will automatically redirect to the dashboard.
+
+### Accessing the Application
+
+- **Dashboard**: `http://localhost:5173` (main application)
+- **GraphQL Playground**: `http://localhost:4000/graphql` (API exploration)
+
+The dashboard includes:
+- KPI cards showing total stock, demand, and fill rate
+- Interactive stock vs demand chart
+- Product table with real-time filtering and pagination
+- Stock transfer and demand update functionality
 
 ## Building for Production
 
@@ -41,6 +59,14 @@ Create a production build:
 ```bash
 npm run build
 ```
+
+Start the production server:
+
+```bash
+npm run start
+```
+
+**Note**: In production, you'll need to run both the GraphQL server (`npm run graphql`) and the React application server simultaneously.
 
 ## Deployment
 
@@ -78,10 +104,30 @@ Make sure to deploy the output of `npm run build`
 │   └── server/    # Server-side code
 ```
 
-## Styling
+## Tech Stack
 
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+- **Frontend**: React 19, React Router v7, TypeScript
+- **Styling**: Tailwind CSS  
+- **State Management**: React Context API
+- **Data Fetching**: Apollo Client, GraphQL
+- **Backend**: Apollo Server Express (Mock GraphQL API)
+- **Charts**: Recharts
+- **Icons**: Lucide React
+- **Build Tool**: Vite
 
----
+## Project Structure
 
-Built with ❤️ using React Router.
+```
+app/
+├── components/          # Reusable UI components
+├── context/            # React Context for state management  
+├── graphql/            # GraphQL schema, resolvers, and data
+├── lib/                # Utility functions and Apollo Client setup
+├── routes/             # React Router route components
+└── types/              # TypeScript type definitions
+```
+
+## Development Notes
+
+See [NOTES.md](./NOTES.md) for detailed information about architecture decisions, code quality considerations, and future enhancements.
+
