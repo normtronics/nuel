@@ -141,6 +141,18 @@ export function ProductProvider({ children }: ProductProviderProps) {
     }
   }, [productsLoading]);
 
+  // Update selectedProduct when products array changes to keep it in sync
+  useEffect(() => {
+    if (selectedProduct && products.length > 0) {
+      const updatedProduct = products.find(p => p.id === selectedProduct.id);
+      if (updatedProduct && 
+          (updatedProduct.stock !== selectedProduct.stock || 
+           updatedProduct.demand !== selectedProduct.demand)) {
+        setSelectedProduct(updatedProduct);
+      }
+    }
+  }, [products]); // Only depend on products to avoid infinite loops
+
 
 
   const value: ProductContextType = {
